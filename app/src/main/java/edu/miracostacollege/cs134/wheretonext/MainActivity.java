@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             Log.e("WhereToNext", "Error loading from", e);
         }
 
+        //nDisplay the college names
         for (int i = 0; i < collegesList.size(); i++) {
             Log.i("college name" , collegesList.get(i).toString());
             
