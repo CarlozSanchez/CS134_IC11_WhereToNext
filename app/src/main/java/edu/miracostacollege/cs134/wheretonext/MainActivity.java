@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         for (int i = 0; i < collegesList.size(); i++) {
-            Log.i("college name" , collegesList.get(i).getName());
+            Log.i("college name" , collegesList.get(i).toString());
             
         }
 

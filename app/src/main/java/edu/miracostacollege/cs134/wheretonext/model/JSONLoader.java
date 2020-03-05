@@ -65,7 +65,8 @@ public class JSONLoader {
 
 
         } catch (JSONException e) {
-            Log.e("Flag Quiz", e.getMessage());
+            Log.e("JSONLoader.java" , e.getMessage()
+                    + ", listSize " + String.valueOf(allCollegesList.size()));
         }
 
         return allCollegesList;
