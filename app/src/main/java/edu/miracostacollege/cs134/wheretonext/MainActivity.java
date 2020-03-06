@@ -48,9 +48,18 @@ public class MainActivity extends AppCompatActivity {
             
         }
 
+        try {
+            collegesList = JSONLoader.loadJSONFromAsset(this);
+        } catch (IOException e) {
+            Log.e("MainActivity", e.getMessage());
+        }
+
+        collegesListView = findViewById(R.id.collegeListView);
 
         // TODO:  Connect the list adapter with the list
-        //collegesListAdapter = new CollegeListAdapter(this, R.id.college_list_item, collegeList);
+        collegesListAdapter = new CollegeListAdapter(this, R.layout.college_list_item, collegesList);
+
+        collegesListView.setAdapter(collegesListAdapter);
         // TODO:  Set the list view to use the list adapter
     }
 
