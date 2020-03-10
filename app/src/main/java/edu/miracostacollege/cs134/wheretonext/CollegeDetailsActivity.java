@@ -1,3 +1,10 @@
+/***
+ * Programmer: Sabas Sanchez
+ * Date: 3/6/2020
+ * Project: IC11 WhereToNext
+ * File: CollegeDetailsActivity.java
+ */
+
 package edu.miracostacollege.cs134.wheretonext;
 
 import android.content.Intent;
@@ -31,9 +38,15 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         Intent detailsIntent = getIntent();
         String name = detailsIntent.getStringExtra("Name");
         int population = detailsIntent.getIntExtra("Population", 0);
-        float tuition = detailsIntent.getFloatExtra("Tuition", 0.0f);
-        float rating = detailsIntent.getFloatExtra("Rating", 0.0f);
+        double tuition = detailsIntent.getDoubleExtra("Tuition", 0.0);
+        double rating = detailsIntent.getDoubleExtra("Rating", 0.0);
         String imageName = detailsIntent.getStringExtra("ImageName");
+
+        Log.i("Name", name);
+        Log.i("pop", String.valueOf(population));
+        Log.i("tuition", String.valueOf(tuition));
+        Log.i("rating", String.valueOf(rating));
+        Log.i("imageName", imageName);
 
         AssetManager am = this.getAssets();
         try {
@@ -52,6 +65,6 @@ public class CollegeDetailsActivity extends AppCompatActivity {
         collegeDetailsNameTextView.setText(name);
         collegeDetailsPopulationTextView.setText("Annual Enrollment: " + thousands.format(population));
         collegeDetailsTuitionTextView.setText("In-state Tuition: " + currency.format(tuition));
-        gameDetailsRatingBar.setRating(rating);
+        gameDetailsRatingBar.setRating((float)rating);
     }
 }
