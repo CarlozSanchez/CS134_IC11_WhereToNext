@@ -8,7 +8,7 @@
               android:paddingLeft="@dimen/activity_horizontal_margin"
               android:paddingRight="@dimen/activity_horizontal_margin"
               android:paddingTop="@dimen/activity_vertical_margin"
-              tools:context="edu.orangecoastcollege.cs273.wheretonext.MainActivity"
+              tools:context="edu.miracostacollege.cs134.wheretonext.MainActivity"
               android:orientation="vertical"
               android:background="@color/aqua">
 

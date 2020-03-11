@@ -1,12 +1,29 @@
+/***
+ * Programmer: Sabas Sanchez
+ * Date: 3/6/2020
+ * Project: IC11 WhereToNext
+ * File: CollegeListAdapater.java
+ */
+
 package edu.miracostacollege.cs134.wheretonext;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.res.AssetManager;
+import android.graphics.drawable.Drawable;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RatingBar;
+import android.widget.TextView;
 
+import java.io.FileInputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,16 +64,39 @@ public class CollegeListAdapter extends ArrayAdapter<College> {
     @Override
     public View getView(int pos, View convertView, ViewGroup parent)
     {
-
-
         LayoutInflater inflater =
                 (LayoutInflater) mContext.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         View view = inflater.inflate(mResourceId, null);
 
+        // Store the selected college
+        College selectedCollege = mCollegesList.get(pos);
 
-        // TODO:  Write the code to correctly inflate the view (college_list_item) with
-        // TODO:  all widgets filled with the appropriate College information.
 
+        // DONE:  Write the code to correctly inflate the view (college_list_item) with
+        ImageView collegeImageView = view.findViewById(R.id.collegeListImageView);
+        TextView collegeTextView = view.findViewById(R.id.collegeListTextView);
+        RatingBar collegeRatingBar = view.findViewById(R.id.collegeListRatingBar);
+
+        // Set tag
+        LinearLayout collegeLinearLayout = view.findViewById(R.id.collegeListLinearLayout);
+        collegeLinearLayout.setTag(selectedCollege);
+
+
+        // DONe:  all widgets filled with the appropriate College information.
+
+        // fill college name
+        collegeTextView.setText(selectedCollege.getName());
+        collegeRatingBar.setRating((float)selectedCollege.getRating());
+
+        // fill college image
+        AssetManager am = mContext.getAssets();
+        try{
+            InputStream stream = am.open(selectedCollege.getImageName());
+            Drawable image = Drawable.createFromStream(stream, selectedCollege.getName());
+            collegeImageView.setImageDrawable(image);
+        }catch(IOException e){
+            Log.e("CollegeListAdapter", e.getMessage());
+    }
 
 
         return view;
